@@ -122,6 +122,13 @@ html {
 }
 
 .flex-item:nth-child(2),
-.flex-item2:nth-child(2) {
+.flex-item2:nth-child(2),
+.flex-item:nth-child(3),
+.flex-item2:nth-child(3) {
     text-align: center;
+}
+
+.flex-item2:nth-child(3):hover {
+    background: #e85f5f;
+    color: #fff;
 }
