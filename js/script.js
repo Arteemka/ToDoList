@@ -6,6 +6,7 @@ const onTextDecrease = document.getElementsByClassName('ul-li-nested-task decrea
 const onDateIncrease = document.getElementsByClassName('ul-li-nested-date increase')[0];
 const onDateDecrease = document.getElementsByClassName('ul-li-nested-date decrease')[0];
 const blockSort = document.getElementsByClassName('menu')[0];
+const blockFilter = document.getElementsByClassName('filter')[0];
 let masToDo = [];
 
 addToDOList.addEventListener('click', function() {
@@ -34,6 +35,7 @@ addToDOList.addEventListener('click', function() {
     localStorage.setItem('ToDO', JSON.stringify(masToDo));
     outputElementsOnPage();
     blockSort.style.display = 'block';
+    blockFilter.style.display = 'block';
 });
 
 function outputElementsOnPage() {
@@ -245,3 +247,44 @@ onDateDecrease.addEventListener('click', function() {
     outputSortDateOnPage();
     masSortDate = [];
 });
+
+
+function entryDate(val,filterElements) {
+    if (val != '') {
+        filterElements.forEach(item => {
+
+            if (item.innerText.toLowerCase().indexOf(val) === -1) {
+                item.parentNode.classList.add('hide');
+                item.innerHTML = item.innerText;
+            } else {
+                item.parentNode.classList.remove('hide');
+                let str = item.innerText;
+                item.innerHTML = insertMArk(str, item.innerText.toLowerCase().search(val), val.length);
+            }
+
+        });
+    } else {
+        filterElements.forEach(item => {
+            item.parentNode.classList.remove('hide');
+            item.innerHTML = item.innerText;
+        });
+    }
+
+}
+
+
+document.getElementsByClassName('filter-item-text')[0].addEventListener('keyup', function() {
+    let val = this.value.toLowerCase().trim();
+    let filterElements = outputListOnPage.querySelectorAll('.on-the-text');
+    entryDate(val,filterElements);
+});
+
+document.getElementsByClassName('filter-item-date')[0].addEventListener('keyup', function() {
+    let val = this.value.toLowerCase().trim();
+    let filterElements = outputListOnPage.querySelectorAll('.on-the-date');
+    entryDate(val,filterElements);
+});
+
+function insertMArk(str, pos, len) {
+    return str.slice(0, pos) + '<mark>' + str.slice(pos, pos + len) + '</mark>' + str.slice(pos + len);
+}
