@@ -1,6 +1,11 @@
 const addToDOList = document.getElementsByClassName('add_button')[0];
 let outputListOnPage = document.querySelector('.output-on-page');
 const input = document.querySelectorAll('input');
+const onTextIncrease = document.getElementsByClassName('ul-li-nested-task increase')[0];
+const onTextDecrease = document.getElementsByClassName('ul-li-nested-task decrease')[0];
+const onDateIncrease = document.getElementsByClassName('ul-li-nested-date increase')[0];
+const onDateDecrease = document.getElementsByClassName('ul-li-nested-date decrease')[0];
+const blockSort = document.getElementsByClassName('menu')[0];
 let masToDo = [];
 
 addToDOList.addEventListener('click', function() {
@@ -28,7 +33,7 @@ addToDOList.addEventListener('click', function() {
     masToDo[i] = list;
     localStorage.setItem('ToDO', JSON.stringify(masToDo));
     outputElementsOnPage();
-
+    blockSort.style.display = 'block';
 });
 
 function outputElementsOnPage() {
@@ -100,3 +105,143 @@ if (localStorage.getItem('ToDO') !== null) {
         createFlexForPage(text, date);
     }
 }
+
+let masSortText = [];
+
+function sortFieldTextOnPage() {
+
+    const getAllFieldText = outputListOnPage.querySelectorAll('.on-the-text');
+    for (let i = 0; i < getAllFieldText.length; i++) {
+        masSortText.push(getAllFieldText[i]);
+    }
+}
+
+
+function outputSortTextOnPage() {
+    for (let i = 0; i < masSortText.length; i++) {
+        outputListOnPage.appendChild(masSortText[i].parentNode);
+    }
+}
+
+onTextIncrease.addEventListener('click', function() {
+    sortFieldTextOnPage();
+
+    masToDo.sort((one, two) => {
+        const oneName = one.text.toLowerCase();
+        const twoName = two.text.toLowerCase();
+        return (oneName < twoName) ? -1 : 1;
+    });
+
+    localStorage.setItem('ToDO', JSON.stringify(masToDo));
+    masSortText.sort((one, two) => {
+        return (one.innerHTML < two.innerHTML) ? -1 : 1;
+    });
+
+    outputSortTextOnPage();
+    masSortText = [];
+});
+
+onTextDecrease.addEventListener('click', function() {
+    sortFieldTextOnPage();
+
+    masToDo.sort((one, two) => {
+        const oneName = one.text.toLowerCase();
+        const twoName = two.text.toLowerCase();
+        return (oneName > twoName) ? -1 : 1;
+    });
+
+    localStorage.setItem('ToDO', JSON.stringify(masToDo));
+    masSortText.sort((one, two) => {
+        return (one.innerHTML > two.innerHTML) ? -1 : 1;
+    });
+
+    outputSortTextOnPage();
+    masSortText = [];
+});
+
+let masSortDate = [];
+
+function sortDateOnPage() {
+    const getAllFieldDate = outputListOnPage.querySelectorAll('.on-the-date');
+    for (let i = 0; i < getAllFieldDate.length; i++) {
+        masSortDate.push(getAllFieldDate[i]);
+    }
+}
+
+function outputSortDateOnPage() {
+    for (let i = 0; i < masSortDate.length; i++) {
+        outputListOnPage.appendChild(masSortDate[i].parentNode);
+    }
+}
+
+function convert() {
+    for (let i = 0; i < masToDo.length; i++) {
+        const getItemDate = masToDo[i].date;
+        const setMasDate = getItemDate.split('-');
+        const convertDate = new Date(setMasDate[0], setMasDate[1] - 1, setMasDate[2]);
+        masToDo[i].date = convertDate;
+    }
+}
+
+function reverseConvert() {
+
+    for (let i = 0; i < masToDo.length; i++) {
+
+        const getItemDate = masToDo[i].date;
+        const convertDate = new Date(getItemDate);
+
+        const resultDate = [
+            convertDate.getFullYear(),
+            addLeadZero(convertDate.getMonth() + 1),
+            addLeadZero(convertDate.getDate())
+        ].join('-');
+
+        masToDo[i].date = resultDate;
+    }
+
+    function addLeadZero(val) {
+        return (+val < 10) ? `0${val}` : val;
+    };
+}
+
+onDateIncrease.addEventListener('click', function() {
+    sortDateOnPage();
+
+    convert();
+
+    masToDo.sort((one, two) => new Date(one.date) - new Date(two.date));
+
+    reverseConvert();
+
+    localStorage.setItem('ToDO', JSON.stringify(masToDo));
+
+    masSortDate.sort((one, two) => {
+        const oneDate = new Date(one.innerHTML.split('-')[0], one.innerHTML.split('-')[1] - 1, one.innerHTML.split('-')[2]);
+        const twoDate = new Date(two.innerHTML.split('-')[0], two.innerHTML.split('-')[1] - 1, two.innerHTML.split('-')[2]);
+        return new Date(oneDate) - new Date(twoDate);
+    });
+
+    outputSortDateOnPage();
+    masSortDate = [];
+});
+
+onDateDecrease.addEventListener('click', function() {
+    sortDateOnPage();
+
+    convert();
+
+    masToDo.sort((one, two) => new Date(two.date) - new Date(one.date));
+
+    reverseConvert();
+
+    localStorage.setItem('ToDO', JSON.stringify(masToDo));
+
+    masSortDate.sort((one, two) => {
+        const oneDate = new Date(one.innerHTML.split('-')[0], one.innerHTML.split('-')[1] - 1, one.innerHTML.split('-')[2]);
+        const twoDate = new Date(two.innerHTML.split('-')[0], two.innerHTML.split('-')[1] - 1, two.innerHTML.split('-')[2]);
+        return new Date(twoDate) - new Date(oneDate);
+    });
+
+    outputSortDateOnPage();
+    masSortDate = [];
+});

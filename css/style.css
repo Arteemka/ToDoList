@@ -132,3 +132,112 @@ html {
     background: #e85f5f;
     color: #fff;
 }
+
+.menu {
+    position: absolute;
+    cursor: pointer;
+    right: 90px;
+    padding-left: 0;
+    top: -8px;
+    width: 220px;
+    display: none;
+}
+
+.nested-menu {
+    position: absolute;
+    cursor: pointer;
+    list-style: none;
+    background: #e85f5f;
+    display: none;
+    z-index: 10;
+}
+
+ul :hover ul {
+    display: block;
+}
+
+.li-nested-menu {
+    position: relative;
+    text-align: center;
+    margin-left: -40px;
+    color: #fff;
+    font-family: arial;
+    width: 150px;
+}
+
+.li-nested-menu:hover {
+    background: #f26b6b;
+}
+
+.ul-nested-task {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    cursor: pointer;
+    list-style: none;
+    background: #e85f5f;
+    z-index: 10;
+}
+
+.ul-li-nested-task {
+    position: relative;
+    text-align: center;
+    margin-left: -40px;
+    color: #fff;
+    font-family: arial;
+    width: 160px;
+    display: none;
+}
+
+ul ul li.task:hover .ul-li-nested-task {
+    display: block;
+}
+
+.ul-li-nested-task:hover {
+    background: #f26b6b;
+}
+
+.ul-nested-date {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    cursor: pointer;
+    list-style: none;
+    background: #e85f5f;
+    z-index: 10;
+}
+
+.ul-li-nested-date {
+    position: relative;
+    text-align: center;
+    margin-left: -40px;
+    color: #fff;
+    font-family: arial;
+    width: 160px;
+    display: none;
+}
+
+ul ul li.the-date:hover .ul-li-nested-date {
+    display: block;
+}
+
+.ul-li-nested-date:hover {
+    background: #f26b6b;
+}
+
+.li-menu {
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    font-family: arial;
+    line-height: 43px;
+    margin-left: -.40em;
+    background: #e85f5f;
+}
+
+.li-menu:hover {
+    background: #f26b6b;
+}
