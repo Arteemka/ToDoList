@@ -241,3 +241,40 @@ ul ul li.the-date:hover .ul-li-nested-date {
 .li-menu:hover {
     background: #f26b6b;
 }
+
+.filter-item-text,
+.filter-item-date {
+    color: #454545;
+    margin-left: 324px;
+    border: 1px solid #fff;
+    border-bottom: 2px solid #e85f5f;
+    padding: 5px 10px 5px 10px;
+    font-family: "Times New Roman", Georgia, Serif;
+    width: 404px;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.filter-item-date {
+    margin-left: -5px;
+    width: 200px;
+}
+
+.flex-container2.hide {
+    display: none;
+}
+
+.label-filter {
+    margin-left: 324px;
+    font-family: "Times New Roman", Georgia, Serif;
+    width: 638px;
+    font-size: 17px;
+    text-align: center;
+    background: #e85f5f;
+    color: #fff;
+    padding: 5px;
+}
+
+.filter {
+    display: none;
+}
