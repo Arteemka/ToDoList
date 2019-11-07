@@ -278,3 +278,30 @@ ul ul li.the-date:hover .ul-li-nested-date {
 .filter {
     display: none;
 }
+
+.error {
+    position: absolute;
+    right: 20px;
+    width: 250px;
+    background: #fff;
+    color: #333;
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 20px;
+    padding: 10px;
+    top: 500px;
+    height: auto;
+}
+
+.hr {
+    position: absolute;
+    margin-top: 492px;
+    right: 287px;
+    width: 4px;
+    height: 67px;
+    background: red;
+    z-index: 1;
+}
+
+.hide-error {
+    display: none;
+}

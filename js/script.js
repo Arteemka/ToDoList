@@ -1,6 +1,7 @@
 const addToDOList = document.getElementsByClassName('add_button')[0];
 let outputListOnPage = document.querySelector('.output-on-page');
 const input = document.querySelectorAll('input');
+let errorMess = document.getElementsByClassName('hide-error')[0];
 const onTextIncrease = document.getElementsByClassName('ul-li-nested-task increase')[0];
 const onTextDecrease = document.getElementsByClassName('ul-li-nested-task decrease')[0];
 const onDateIncrease = document.getElementsByClassName('ul-li-nested-date increase')[0];
@@ -9,7 +10,57 @@ const blockSort = document.getElementsByClassName('menu')[0];
 const blockFilter = document.getElementsByClassName('filter')[0];
 let masToDo = [];
 
+function timer() {
+    setTimeout(function() {
+        errorMess.style.display = 'none';
+    }, 2000);
+}
+
 addToDOList.addEventListener('click', function() {
+
+    let check = false;
+    if ((input[1].value === '' || input[1].value === null) && (input[0].value === '' || input[0].value === null)) {
+        document.getElementsByClassName('error')[0].innerHTML = 'Вы незаполнили поле текст и дату!';
+        errorMess.style.display = 'block';
+        input[1].style.border = '1px solid red';
+        input[0].style.border = '1px solid  red';
+        document.querySelector('.hr').style.background = 'red';
+        document.querySelector('.hr').style.height = '67px';
+        check = false;
+        timer();
+    } else if (input[1].value === '' || input[1].value === null) {
+        document.getElementsByClassName('error')[0].innerHTML = 'Вы незаполнили поле дату!';
+        input[1].style.border = ' 1px solid red';
+        input[0].style.border = 'none';
+        input[0].style.borderBottom = '1px solid  #e85f5f';
+        errorMess.style.display = 'block';
+        document.querySelector('.hr').style.height = '44px';
+        document.querySelector('.hr').style.background = 'red';
+        timer();
+    } else if (input[0].value === '' || input[0].value === null) {
+        check = false;
+        input[1].style.border = 'none';
+        input[1].style.borderBottom = '1px solid  #e85f5f';
+        input[0].style.border = '1px solid  red';
+        errorMess.style.display = 'block';
+        document.getElementsByClassName('error')[0].innerHTML = 'Вы незаполнили поле текст!';
+        document.querySelector('.hr').style.height = '44px';
+        document.querySelector('.hr').style.background = 'red';
+        timer();
+    } else {
+        check = true;
+        input[1].style.border = 'none';
+        input[0].style.border = 'none';
+        input[0].style.borderBottom = '1px solid  #e85f5f';
+        input[1].style.borderBottom = '1px solid  #e85f5f';
+        document.querySelector('.hr').style.height = '44px';
+        document.querySelector('.hr').style.background = 'green';
+        document.getElementsByClassName('error')[0].innerHTML = 'Данные успешно добавлены!';
+        errorMess.style.display = 'block';
+        timer();
+    }
+
+    if (check) {
 
     function List(text, date) {
         this.text = text;
@@ -36,6 +87,7 @@ addToDOList.addEventListener('click', function() {
     outputElementsOnPage();
     blockSort.style.display = 'block';
     blockFilter.style.display = 'block';
+}
 });
 
 function outputElementsOnPage() {
