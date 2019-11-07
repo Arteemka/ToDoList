@@ -53,6 +53,7 @@ function createFlexForPage(text, date) {
     const createDivContainer = document.createElement('DIV');
     const createTableColumOutText = document.createElement('DIV');
     const createTableColumOutDate = document.createElement('DIV');
+    const createTableColumOutDelete = document.createElement('DIV');
     
 
 
@@ -65,8 +66,12 @@ function createFlexForPage(text, date) {
     createTableColumOutDate.className = 'flex-item2 on-the-date';
     createDivContainer.appendChild(createTableColumOutDate);
 
+    createTableColumOutDelete.className = 'flex-item2';
+    createDivContainer.appendChild(createTableColumOutDelete);
+
     createTableColumOutText.textContent = text;
     createTableColumOutDate.textContent = date;
+    createTableColumOutDelete.textContent = 'X';
 }
 
 function clearInput() {
@@ -79,4 +84,8 @@ outputListOnPage.addEventListener('click', function(e) {
     return (e.target.parentNode.className === 'flex-container2') ?
         e.target.parentNode.classList.add('checked') :
         e.target.parentNode.classList.remove('checked');
+});
+
+outputListOnPage.addEventListener('click', function(e) {
+    return (e.target.textContent === 'X') ? e.target.parentNode.remove() : false;
 });
