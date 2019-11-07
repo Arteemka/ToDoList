@@ -1,24 +1,36 @@
 html {
-    background-image: url("../img/wall-751342_1920.jpg");
+    background: url("../img/wall-751342_1920.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .form {
     position: absolute;
     background-color: #fff;
     max-width: 200px;
-    height: 170px;
+    height: 180px;
     top: 100px;
+}
+
+::-webkit-input-placeholder {
+    font-family: Arial;
+    font-size: 15px;
+    vertical-align: middle;
 }
 
 .text,
 .date {
+    color: #454545;
     margin-top: 20px;
     margin-left: 12px;
     border: none;
-    border-bottom: 1px solid #fa4141;
-    padding: 5px 0 5px 0;
+    border-bottom: 1px solid #e85f5f;
+    padding: 5px 10px 5px 10px;
     font-family: "Times New Roman", Georgia, Serif;
-    font-size: 90%;
+    width: 150px;
+    font-size: 15px;
 }
 
 .date {
@@ -26,12 +38,78 @@ html {
 }
 
 .add_button {
+    cursor: pointer;
     margin-top: 20px;
     margin-left: 50px;
     color: #fff;
     text-decoration: none;
     user-select: none;
-    background: rgb(212, 75, 56);
+    background: #e85f5f;
     padding: 10px 20px 10px 20px;
     border: none;
+    font-size: 15px;
+    color: #fff;
+}
+
+.add_button:hover {
+    opacity: 0.9;
+}
+
+.output-on-page {
+    display: none;
+}
+
+.flex-container,
+.flex-container2 {
+    display: flex;
+    margin-left: 324px;
+    position: relative;
+    width: 649px;
+    height: auto;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.048), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.flex-container2 {
+    cursor: pointer;
+}
+
+.flex-item,
+.flex-item2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-grow: 1;
+    width: 1px;
+    font-weight: normal;
+    color: #333;
+    border-bottom: 2px solid #e85f5f;
+    background: #e85f5f;
+    text-align: justify;
+    color: #fff;
+}
+
+.flex-item2 {
+    background: #fff;
+    color: #333;
+}
+
+.flex-item2:nth-child(1) {
+    padding-left: 10px;
+    flex-grow: 12;
+}
+
+.flex-item:nth-child(1) {
+    text-align: center;
+    flex-grow: 12;
+}
+
+.flex-item:nth-child(2),
+.flex-item2:nth-child(2) {
+    flex-grow: 3;
+}
+
+.flex-item:nth-child(2),
+.flex-item2:nth-child(2) {
+    text-align: center;
 }
