@@ -26,6 +26,7 @@ addToDOList.addEventListener('click', function() {
 
     const i = masToDo.length;
     masToDo[i] = list;
+    localStorage.setItem('ToDO', JSON.stringify(masToDo));
     outputElementsOnPage();
 
 });
@@ -89,3 +90,13 @@ outputListOnPage.addEventListener('click', function(e) {
 outputListOnPage.addEventListener('click', function(e) {
     return (e.target.textContent === 'X') ? e.target.parentNode.remove() : false;
 });
+
+if (localStorage.getItem('ToDO') !== null) {
+    masToDo = JSON.parse(localStorage.getItem('ToDO'));
+
+    for (let i = 0; i < masToDo.length; i++) {
+        const { text } = masToDo[i];
+        const { date } = masToDo[i];
+        createFlexForPage(text, date);
+    }
+}
