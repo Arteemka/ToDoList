@@ -74,3 +74,9 @@ function clearInput() {
         item.value = '';
     });
 }
+
+outputListOnPage.addEventListener('click', function(e) {
+    return (e.target.parentNode.className === 'flex-container2') ?
+        e.target.parentNode.classList.add('checked') :
+        e.target.parentNode.classList.remove('checked');
+});

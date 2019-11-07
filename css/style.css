@@ -89,6 +89,18 @@ html {
     color: #fff;
 }
 
+.flex-container2.checked .flex-item2:nth-child(1) {
+    background: #333;
+    color: #e85f5f;
+    text-decoration: line-through;
+}
+
+.flex-container2.checked .flex-item2:nth-child(2) {
+    background: #333;
+    color: #e85f5f;
+    text-decoration: line-through;
+}
+
 .flex-item2 {
     background: #fff;
     color: #333;
