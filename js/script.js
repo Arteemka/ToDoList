@@ -264,7 +264,6 @@ function reverseConvert() {
 
 onDateIncrease.addEventListener("click", function() {
   sortDateOnPage();
-
   convert();
 
   function sorting() {
@@ -304,7 +303,6 @@ onDateIncrease.addEventListener("click", function() {
 
 onDateDecrease.addEventListener("click", function() {
   sortDateOnPage();
-
   convert();
 
   function sorting() {
@@ -360,6 +358,7 @@ function entryDate(val, filterElements) {
       }
     });
   }
+
   filterElements.forEach(item => {
     item.parentNode.classList.remove("hide");
     item.innerHTML = item.innerText;
